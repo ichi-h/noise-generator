@@ -2,10 +2,11 @@
 import { ref } from "vue";
 import { defineProps } from "vue";
 import { dispatch } from "../service/noise/dispatch";
+import { VolStorage } from "../storage";
 
 defineProps<{ msg: string }>();
 
-const vol = ref(0.2);
+const vol = ref(VolStorage.load());
 
 const onPlayClick = () => {
   dispatch({ type: "ChangeVolume", volume: vol.value });
